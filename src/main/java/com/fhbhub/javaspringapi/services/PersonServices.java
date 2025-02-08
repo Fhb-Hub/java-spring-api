@@ -2,7 +2,7 @@ package com.fhbhub.javaspringapi.services;
 
 import com.fhbhub.javaspringapi.converter.DozerConverter;
 import com.fhbhub.javaspringapi.data.model.Person;
-import com.fhbhub.javaspringapi.data.vo.v1.PersonVO;
+import com.fhbhub.javaspringapi.data.vo.PersonVO;
 import com.fhbhub.javaspringapi.exception.ResourceNotFoundException;
 import com.fhbhub.javaspringapi.repository.PersonRepository;
 import lombok.RequiredArgsConstructor;

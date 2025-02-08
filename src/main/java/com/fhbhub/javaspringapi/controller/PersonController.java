@@ -1,6 +1,6 @@
 package com.fhbhub.javaspringapi.controller;
 
-import com.fhbhub.javaspringapi.data.vo.v1.PersonVO;
+import com.fhbhub.javaspringapi.data.vo.PersonVO;
 import com.fhbhub.javaspringapi.services.PersonServices;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

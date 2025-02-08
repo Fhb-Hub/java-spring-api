@@ -2,7 +2,7 @@ package com.fhbhub.javaspringapi.converter;
 
 import com.fhbhub.javaspringapi.converter.mocks.MockPerson;
 import com.fhbhub.javaspringapi.data.model.Person;
-import com.fhbhub.javaspringapi.data.vo.v1.PersonVO;
+import com.fhbhub.javaspringapi.data.vo.PersonVO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

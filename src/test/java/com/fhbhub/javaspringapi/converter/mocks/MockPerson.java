@@ -1,7 +1,7 @@
 package com.fhbhub.javaspringapi.converter.mocks;
 
 import com.fhbhub.javaspringapi.data.model.Person;
-import com.fhbhub.javaspringapi.data.vo.v1.PersonVO;
+import com.fhbhub.javaspringapi.data.vo.PersonVO;
 
 import java.util.ArrayList;
 import java.util.List;

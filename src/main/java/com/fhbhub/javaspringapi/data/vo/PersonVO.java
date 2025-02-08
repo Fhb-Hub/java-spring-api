@@ -1,4 +1,4 @@
-package com.fhbhub.javaspringapi.data.vo.v1;
+package com.fhbhub.javaspringapi.data.vo;
 
 import lombok.Data;
 

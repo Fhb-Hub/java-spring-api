@@ -1,54 +1,49 @@
 package com.fhbhub.javaspringapi.controller;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.fhbhub.javaspringapi.data.vo.v1.PersonVO;
 import com.fhbhub.javaspringapi.services.PersonServices;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
-@RequestMapping("/api/person/v1")
+@RequiredArgsConstructor
+@RequestMapping(value = "/api/person/v1", produces = {"application/json"})
 public class PersonController {
-	
-	@Autowired
-	private PersonServices service;
-	
-	@GetMapping(produces = { "application/json", "application/xml", "application/x-yaml" })
-	public List<PersonVO> findAll() {
-		return service.findAll();
-	}	
-	
-	@GetMapping(value = "/{id}", produces = { "application/json", "application/xml", "application/x-yaml" })
-	public PersonVO findById(@PathVariable("id") Long id) {
-		return service.findById(id);
-	}	
-	
-	@PostMapping(produces = { "application/json", "application/xml", "application/x-yaml" }, 
-			consumes = { "application/json", "application/xml", "application/x-yaml" })
-	public PersonVO create(@RequestBody PersonVO person) {
-		return service.create(person);
-	}
-	
-	@PutMapping(produces = { "application/json", "application/xml", "application/x-yaml" }, 
-			consumes = { "application/json", "application/xml", "application/x-yaml" })
-	public PersonVO update(@RequestBody PersonVO person) {
-		return service.update(person);
-	}	
-	
-	@DeleteMapping("/{id}")
-	public ResponseEntity<?> delete(@PathVariable("id") Long id) {
-		service.delete(id);
-		return ResponseEntity.ok().build();
-	}	
-	
+
+    private final PersonServices service;
+
+    @GetMapping()
+    public ResponseEntity<List<PersonVO>> findAll() {
+        var peopleList = service.findAll();
+        return ResponseEntity.status(HttpStatus.OK).body(peopleList);
+    }
+
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<PersonVO> findById(@PathVariable("id") Long id) {
+        var person = service.findById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(person);
+    }
+
+    @PostMapping(consumes = {"application/json"})
+    public ResponseEntity<PersonVO> create(@RequestBody PersonVO person) {
+        var createdPerson = service.create(person);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdPerson);
+    }
+
+    @PutMapping(consumes = {"application/json"})
+    public ResponseEntity<PersonVO> update(@RequestBody PersonVO person) {
+        var updatedPerson = service.update(person);
+        return ResponseEntity.status(HttpStatus.OK).body(updatedPerson);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
+        service.delete(id);
+        return ResponseEntity.ok().build();
+    }
+
 }

@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(value = "/api/person/v1", produces = {"application/json"})
@@ -18,32 +21,43 @@ public class PersonController {
 
     @GetMapping()
     public ResponseEntity<List<PersonVO>> findAll() {
-        var peopleList = service.findAll();
-        return ResponseEntity.status(HttpStatus.OK).body(peopleList);
+        var peopleVO = service.findAll();
+        peopleVO.forEach(this::addHateoas);
+        return ResponseEntity.status(HttpStatus.OK).body(peopleVO);
     }
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<PersonVO> findById(@PathVariable("id") Long id) {
-        var person = service.findById(id);
-        return ResponseEntity.status(HttpStatus.OK).body(person);
+        var personVO = service.findById(id);
+        addHateoas(personVO);
+
+        return ResponseEntity.status(HttpStatus.OK).body(personVO);
     }
 
     @PostMapping(consumes = {"application/json"})
     public ResponseEntity<PersonVO> create(@RequestBody PersonVO person) {
-        var createdPerson = service.create(person);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdPerson);
+        var personVO = service.create(person);
+        addHateoas(personVO);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(personVO);
     }
 
     @PutMapping(consumes = {"application/json"})
     public ResponseEntity<PersonVO> update(@RequestBody PersonVO person) {
-        var updatedPerson = service.update(person);
-        return ResponseEntity.status(HttpStatus.OK).body(updatedPerson);
+        var personVO = service.update(person);
+        addHateoas(personVO);
+
+        return ResponseEntity.status(HttpStatus.OK).body(personVO);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
         service.delete(id);
+
         return ResponseEntity.ok().build();
     }
 
+    private void addHateoas(PersonVO personVO) {
+        personVO.add(linkTo(methodOn(PersonController.class).findById(personVO.getKey())).withSelfRel());
+    }
 }

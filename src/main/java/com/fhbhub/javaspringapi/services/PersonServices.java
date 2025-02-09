@@ -30,7 +30,7 @@ public class PersonServices {
     }
 
     public PersonVO update(PersonVO person) {
-        Person entity = getPerson(person.getId());
+        Person entity = getPerson(person.getKey());
         entity.setFirstName(person.getFirstName());
         entity.setLastName(person.getLastName());
         entity.setAddress(person.getAddress());

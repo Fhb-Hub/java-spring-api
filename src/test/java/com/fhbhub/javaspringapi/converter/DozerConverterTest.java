@@ -57,7 +57,7 @@ class DozerConverterTest {
 
     private void validatePersonVO(PersonVO person, int index, String expectedGender) {
         assertAll("Validating PersonVO at index " + index,
-                () -> assertEquals(index, person.getId()),
+                () -> assertEquals(index, person.getKey()),
                 () -> assertEquals("First Name Test" + index, person.getFirstName()),
                 () -> assertEquals("Last Name Test" + index, person.getLastName()),
                 () -> assertEquals("Address Test" + index, person.getAddress()),

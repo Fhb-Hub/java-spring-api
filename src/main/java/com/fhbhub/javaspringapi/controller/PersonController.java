@@ -2,6 +2,7 @@ package com.fhbhub.javaspringapi.controller;
 
 import com.fhbhub.javaspringapi.data.vo.PersonVO;
 import com.fhbhub.javaspringapi.services.PersonServices;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(value = "/api/person/v1", produces = {"application/json"})
+@Tag(name = "People", description = "Endpoint for people management")
 public class PersonController {
 
     private final PersonServices service;

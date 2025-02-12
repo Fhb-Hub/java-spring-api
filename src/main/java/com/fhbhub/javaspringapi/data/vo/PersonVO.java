@@ -25,10 +25,10 @@ public class PersonVO extends RepresentationModel<PersonVO> implements Serializa
 
     @JsonProperty("first_name")
     private String firstName;
+
     @JsonProperty("last_name")
     private String lastName;
 
-    private String address;
 
     @Schema(
             description = "Gender of the person. It can be 'male' or 'female'.",
@@ -37,4 +37,5 @@ public class PersonVO extends RepresentationModel<PersonVO> implements Serializa
     )
     private String gender;
 
+    private String address;
 }

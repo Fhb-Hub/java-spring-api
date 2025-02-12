@@ -1,4 +1,4 @@
-package com.fhbhub.javaspringapi.services;
+package com.fhbhub.javaspringapi.service;
 
 import com.fhbhub.javaspringapi.converter.DozerConverter;
 import com.fhbhub.javaspringapi.data.model.Person;
@@ -12,7 +12,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class PersonServices {
+public class PersonService {
 
     private final PersonRepository repository;
 
@@ -26,11 +26,11 @@ public class PersonServices {
     }
 
     public PersonVO findById(Long id) {
-        return DozerConverter.parseObject(getPerson(id), PersonVO.class);
+        return DozerConverter.parseObject(getPersonById(id), PersonVO.class);
     }
 
     public PersonVO update(PersonVO person) {
-        Person entity = getPerson(person.getKey());
+        Person entity = getPersonById(person.getKey());
         entity.setFirstName(person.getFirstName());
         entity.setLastName(person.getLastName());
         entity.setAddress(person.getAddress());
@@ -40,10 +40,10 @@ public class PersonServices {
     }
 
     public void delete(Long id) {
-        repository.delete(getPerson(id));
+        repository.delete(getPersonById(id));
     }
 
-    private Person getPerson(Long id) {
+    private Person getPersonById(Long id) {
         return repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("No records found for this ID"));
     }

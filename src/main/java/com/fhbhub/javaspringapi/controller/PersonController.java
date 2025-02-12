@@ -2,7 +2,7 @@ package com.fhbhub.javaspringapi.controller;
 
 import com.fhbhub.javaspringapi.controller.swagger.PersonSwagger;
 import com.fhbhub.javaspringapi.data.vo.PersonVO;
-import com.fhbhub.javaspringapi.services.PersonServices;
+import com.fhbhub.javaspringapi.service.PersonService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +19,14 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 @RequestMapping(value = "/api/person/v1", produces = {"application/json"})
 public class PersonController implements PersonSwagger {
 
-    private final PersonServices service;
+    private final PersonService service;
+
+    @Override
+    public ResponseEntity<PersonVO> create(PersonVO person) {
+        var personVO = service.create(person);
+        addHateoas(personVO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(personVO);
+    }
 
     @Override
     public ResponseEntity<List<PersonVO>> findAll() {
@@ -36,13 +43,6 @@ public class PersonController implements PersonSwagger {
     }
 
     @Override
-    public ResponseEntity<PersonVO> create(PersonVO person) {
-        var personVO = service.create(person);
-        addHateoas(personVO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(personVO);
-    }
-
-    @Override
     public ResponseEntity<PersonVO> update(PersonVO person) {
         var personVO = service.update(person);
         addHateoas(personVO);
@@ -52,7 +52,7 @@ public class PersonController implements PersonSwagger {
     @Override
     public ResponseEntity<Void> delete(Long id) {
         service.delete(id);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.noContent().build();
     }
 
     private void addHateoas(PersonVO personVO) {

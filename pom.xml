@@ -17,7 +17,6 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>21</java.version>
-		<mysql.version>9.2.0</mysql.version>
 		<lombok.version>1.18.36</lombok.version>
 		<dozer.version>6.4.1</dozer.version>
 		<springdoc.version>2.2.0</springdoc.version>
@@ -81,6 +80,14 @@
 			<scope>provided</scope>
 		</dependency>
 
+
+		<!-- for MySQL support -->
+		<dependency>
+			<groupId>com.mysql</groupId>
+			<artifactId>mysql-connector-j</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
 		<!-- for migrations support -->
 		<dependency>
 			<groupId>org.flywaydb</groupId>
@@ -90,14 +97,6 @@
 		<dependency>
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-mysql</artifactId>
-		</dependency>
-
-		<!-- for MySQL support -->
-		<dependency>
-			<groupId>com.mysql</groupId>
-			<artifactId>mysql-connector-j</artifactId>
-			<version>${mysql.version}</version>
-			<scope>runtime</scope>
 		</dependency>
 
 		<!-- for unit tests support -->

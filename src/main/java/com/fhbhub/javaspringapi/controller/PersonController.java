@@ -1,7 +1,7 @@
 package com.fhbhub.javaspringapi.controller;
 
 import com.fhbhub.javaspringapi.controller.swagger.PersonSwagger;
-import com.fhbhub.javaspringapi.data.vo.PersonVO;
+import com.fhbhub.javaspringapi.data.dto.PersonDTO;
 import com.fhbhub.javaspringapi.service.PersonService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -22,31 +22,31 @@ public class PersonController implements PersonSwagger {
     private final PersonService service;
 
     @Override
-    public ResponseEntity<PersonVO> create(PersonVO person) {
-        var personVO = service.create(person);
-        addHateoas(personVO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(personVO);
+    public ResponseEntity<PersonDTO> create(PersonDTO personDTO) {
+        var response = service.create(personDTO);
+        addHateoas(response);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @Override
-    public ResponseEntity<List<PersonVO>> findAll() {
-        var peopleVO = service.findAll();
-        peopleVO.forEach(this::addHateoas);
-        return ResponseEntity.status(HttpStatus.OK).body(peopleVO);
+    public ResponseEntity<List<PersonDTO>> findAll() {
+        var response = service.findAll();
+        response.forEach(this::addHateoas);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
     @Override
-    public ResponseEntity<PersonVO> findById(Long id) {
-        var personVO = service.findById(id);
-        addHateoas(personVO);
-        return ResponseEntity.status(HttpStatus.OK).body(personVO);
+    public ResponseEntity<PersonDTO> findById(Long id) {
+        var response = service.findById(id);
+        addHateoas(response);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
     @Override
-    public ResponseEntity<PersonVO> update(PersonVO person) {
-        var personVO = service.update(person);
-        addHateoas(personVO);
-        return ResponseEntity.status(HttpStatus.OK).body(personVO);
+    public ResponseEntity<PersonDTO> update(PersonDTO personDTO) {
+        var response = service.update(personDTO);
+        addHateoas(response);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
     @Override
@@ -55,7 +55,7 @@ public class PersonController implements PersonSwagger {
         return ResponseEntity.noContent().build();
     }
 
-    private void addHateoas(PersonVO personVO) {
-        personVO.add(linkTo(methodOn(PersonController.class).findById(personVO.getKey())).withSelfRel());
+    private void addHateoas(PersonDTO personDTO) {
+        personDTO.add(linkTo(methodOn(PersonController.class).findById(personDTO.getKey())).withSelfRel());
     }
 }

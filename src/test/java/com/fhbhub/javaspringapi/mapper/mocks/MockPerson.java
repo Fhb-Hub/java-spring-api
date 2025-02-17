@@ -1,7 +1,7 @@
-package com.fhbhub.javaspringapi.converter.mocks;
+package com.fhbhub.javaspringapi.mapper.mocks;
 
 import com.fhbhub.javaspringapi.data.model.Person;
-import com.fhbhub.javaspringapi.data.vo.PersonVO;
+import com.fhbhub.javaspringapi.data.dto.PersonDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,8 +12,8 @@ public class MockPerson {
     	return mockEntity(0);
     }
     
-    public PersonVO mockVO() {
-    	return mockVO(0);
+    public PersonDTO mockDTO() {
+    	return mockDTO(0);
     }
     
     public List<Person> mockEntityList() {
@@ -24,10 +24,10 @@ public class MockPerson {
         return persons;
     }
 
-    public List<PersonVO> mockVOList() {
-        List<PersonVO> persons = new ArrayList<>();
+    public List<PersonDTO> mockDTOList() {
+        List<PersonDTO> persons = new ArrayList<>();
         for (int i = 0; i < 14; i++) {
-            persons.add(mockVO(i));
+            persons.add(mockDTO(i));
         }
         return persons;
     }
@@ -42,8 +42,8 @@ public class MockPerson {
         return person;
     }
 
-    private PersonVO mockVO(Integer number) {
-    	PersonVO person = new PersonVO();
+    private PersonDTO mockDTO(Integer number) {
+    	PersonDTO person = new PersonDTO();
     	person.setAddress("Address Test" + number);
         person.setFirstName("First Name Test" + number);
         person.setGender(((number % 2)==0) ? "Male" : "Female");

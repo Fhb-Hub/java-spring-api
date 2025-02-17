@@ -1,4 +1,4 @@
-package com.fhbhub.javaspringapi.converter;
+package com.fhbhub.javaspringapi.mapper;
 
 import com.github.dozermapper.core.DozerBeanMapperBuilder;
 import com.github.dozermapper.core.Mapper;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class DozerConverter {
+public class ObjectMapper {
 
     private static final Mapper mapper = DozerBeanMapperBuilder.buildDefault();
 

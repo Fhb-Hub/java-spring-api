@@ -1,4 +1,4 @@
-package com.fhbhub.javaspringapi.data.vo;
+package com.fhbhub.javaspringapi.data.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -14,7 +14,7 @@ import java.util.Date;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @JsonPropertyOrder({"id", "title", "author", "launchDate", "price"})
-public class BookVO extends RepresentationModel<BookVO> implements Serializable {
+public class BookDTO extends RepresentationModel<BookDTO> implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;

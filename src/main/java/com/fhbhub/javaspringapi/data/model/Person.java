@@ -30,4 +30,7 @@ public class Person implements Serializable{
 	@Column(nullable = false, length = 6)
 	private String gender;
 
+	@Column(nullable = false, length = 16)
+	private String creditCard;
+
 }

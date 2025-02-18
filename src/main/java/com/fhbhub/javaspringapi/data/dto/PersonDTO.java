@@ -2,6 +2,8 @@ package com.fhbhub.javaspringapi.data.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fhbhub.javaspringapi.serializer.CreditCardMaskSerializer;
 import com.github.dozermapper.core.Mapping;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotNull;
@@ -43,4 +45,7 @@ public class PersonDTO extends RepresentationModel<PersonDTO> implements Seriali
 
     @NotNull(message = "Campo 'title' não pode ser nulo")
     private String address;
+
+    @JsonSerialize(using = CreditCardMaskSerializer.class)
+    private String creditCard;
 }

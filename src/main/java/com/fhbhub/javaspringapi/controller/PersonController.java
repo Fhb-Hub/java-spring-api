@@ -56,6 +56,10 @@ public class PersonController implements PersonSwagger {
     }
 
     private void addHateoas(PersonDTO personDTO) {
-        personDTO.add(linkTo(methodOn(PersonController.class).findById(personDTO.getKey())).withSelfRel());
+        personDTO.add(linkTo(methodOn(PersonController.class).findById(personDTO.getKey())).withSelfRel().withType("GET"));
+        personDTO.add(linkTo(methodOn(PersonController.class).findAll()).withRel("findAll").withType("GET"));
+        personDTO.add(linkTo(methodOn(PersonController.class).create(personDTO)).withRel("create").withType("POST"));
+        personDTO.add(linkTo(methodOn(PersonController.class).update(personDTO)).withRel("update").withType("PUT"));
+        personDTO.add(linkTo(methodOn(PersonController.class).delete(personDTO.getKey())).withRel("delete").withType("DELETE"));
     }
 }

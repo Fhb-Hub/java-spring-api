@@ -56,6 +56,10 @@ public class BookController implements BookSwagger {
     }
 
     private void addHateoas(BookDTO bookDTO) {
-        bookDTO.add(linkTo(methodOn(PersonController.class).findById(bookDTO.getKey())).withSelfRel());
+        bookDTO.add(linkTo(methodOn(BookController.class).findById(bookDTO.getKey())).withSelfRel().withType("GET"));
+        bookDTO.add(linkTo(methodOn(BookController.class).findAll()).withRel("findAll").withType("GET"));
+        bookDTO.add(linkTo(methodOn(BookController.class).create(bookDTO)).withRel("create").withType("POST"));
+        bookDTO.add(linkTo(methodOn(BookController.class).update(bookDTO)).withRel("update").withType("PUT"));
+        bookDTO.add(linkTo(methodOn(BookController.class).delete(bookDTO.getKey())).withRel("delete").withType("DELETE"));
     }
 }

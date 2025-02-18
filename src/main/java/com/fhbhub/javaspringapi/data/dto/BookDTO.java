@@ -1,8 +1,11 @@
 package com.fhbhub.javaspringapi.data.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.github.dozermapper.core.Mapping;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.springframework.hateoas.RepresentationModel;
@@ -23,11 +26,17 @@ public class BookDTO extends RepresentationModel<BookDTO> implements Serializabl
     @JsonProperty("id")
     private Long key;
 
-    @JsonProperty("launch_date")
-    private Date launchDate;
-
+    @NotNull(message = "Campo 'title' não pode ser nulo")
     private String title;
+
+    @NotNull(message = "Campo 'author' não pode ser nulo")
     private String author;
+
+    @NotNull(message = "Campo 'price' não pode ser nulo")
     private Double price;
 
+    @JsonProperty("launch_date")
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    private Date launchDate;
 }

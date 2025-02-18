@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.github.dozermapper.core.Mapping;
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.springframework.hateoas.RepresentationModel;
@@ -24,9 +25,11 @@ public class PersonDTO extends RepresentationModel<PersonDTO> implements Seriali
     private Long key;
 
     @JsonProperty("first_name")
+    @NotNull(message = "Campo 'title' não pode ser nulo")
     private String firstName;
 
     @JsonProperty("last_name")
+    @NotNull(message = "Campo 'title' não pode ser nulo")
     private String lastName;
 
 
@@ -35,7 +38,9 @@ public class PersonDTO extends RepresentationModel<PersonDTO> implements Seriali
             allowableValues = {"male", "female"},
             example = "male"
     )
+    @NotNull(message = "Campo 'title' não pode ser nulo")
     private String gender;
 
+    @NotNull(message = "Campo 'title' não pode ser nulo")
     private String address;
 }

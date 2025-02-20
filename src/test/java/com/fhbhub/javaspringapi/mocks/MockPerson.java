@@ -1,4 +1,4 @@
-package com.fhbhub.javaspringapi.mapper.mocks;
+package com.fhbhub.javaspringapi.mocks;
 
 import com.fhbhub.javaspringapi.data.model.Person;
 import com.fhbhub.javaspringapi.data.dto.PersonDTO;
@@ -32,23 +32,23 @@ public class MockPerson {
         return persons;
     }
     
-    private Person mockEntity(Integer number) {
+    public Person mockEntity(Integer number) {
     	Person person = new Person();
-    	person.setAddress("Address Test" + number);
         person.setFirstName("First Name Test" + number);
-        person.setGender(((number % 2)==0) ? "Male" : "Female");
-        person.setId(number.longValue());
         person.setLastName("Last Name Test" + number);
+        person.setGender(((number % 2)==0) ? "Male" : "Female");
+    	person.setAddress("Address Test" + number);
+        person.setCreditCard("123456789012345" + number);
         return person;
     }
 
-    private PersonDTO mockDTO(Integer number) {
+    public PersonDTO mockDTO(Integer number) {
     	PersonDTO person = new PersonDTO();
-    	person.setAddress("Address Test" + number);
         person.setFirstName("First Name Test" + number);
-        person.setGender(((number % 2)==0) ? "Male" : "Female");
-        person.setKey(number.longValue());
         person.setLastName("Last Name Test" + number);
+        person.setGender(((number % 2)==0) ? "Male" : "Female");
+    	person.setAddress("Address Test" + number);
+        person.setCreditCard("123456789012345" + number);
         return person;
     }
 

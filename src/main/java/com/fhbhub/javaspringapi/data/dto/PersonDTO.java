@@ -47,5 +47,7 @@ public class PersonDTO extends RepresentationModel<PersonDTO> implements Seriali
     private String address;
 
     @JsonSerialize(using = CreditCardMaskSerializer.class)
+    @NotNull(message = "Campo 'creditCard' não pode ser nulo")
+    @JsonProperty("credit_card")
     private String creditCard;
 }

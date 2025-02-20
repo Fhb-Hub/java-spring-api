@@ -47,7 +47,7 @@ public class PersonService {
 
     private Person getPersonById(Long id) {
         return repository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("No records found for this ID"));
+                .orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
     }
 
 }

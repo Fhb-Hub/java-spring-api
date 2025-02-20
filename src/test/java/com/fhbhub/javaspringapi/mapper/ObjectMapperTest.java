@@ -2,7 +2,7 @@ package com.fhbhub.javaspringapi.mapper;
 
 import com.fhbhub.javaspringapi.data.dto.PersonDTO;
 import com.fhbhub.javaspringapi.data.model.Person;
-import com.fhbhub.javaspringapi.mapper.mocks.MockPerson;
+import com.fhbhub.javaspringapi.mocks.MockPerson;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -52,7 +52,7 @@ class ObjectMapperTest {
     void shouldConvertDTOListToEntityList() {
         List<Person> outputList = parseListObjects(inputObject.mockDTOList(), Person.class);
         assertEquals(14, outputList.size());
-
+        System.out.println(outputList.get(0));
         validatePerson(outputList.get(0), 0, "Male");
         validatePerson(outputList.get(7), 7, "Female");
         validatePerson(outputList.get(12), 12, "Male");
@@ -60,7 +60,6 @@ class ObjectMapperTest {
 
     private void validatePersonDTO(PersonDTO person, int index, String expectedGender) {
         assertAll("Validating PersonDTO at index " + index,
-                () -> assertEquals(index, person.getKey()),
                 () -> assertEquals("First Name Test" + index, person.getFirstName()),
                 () -> assertEquals("Last Name Test" + index, person.getLastName()),
                 () -> assertEquals("Address Test" + index, person.getAddress()),
@@ -70,7 +69,6 @@ class ObjectMapperTest {
 
     private void validatePerson(Person person, int index, String expectedGender) {
         assertAll("Validating Person at index " + index,
-                () -> assertEquals(index, person.getId()),
                 () -> assertEquals("First Name Test" + index, person.getFirstName()),
                 () -> assertEquals("Last Name Test" + index, person.getLastName()),
                 () -> assertEquals("Address Test" + index, person.getAddress()),

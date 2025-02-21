@@ -12,11 +12,11 @@ spring:
     hibernate:
       ddl-auto: none
 springdoc:
+  paths-to-match: /api/**/v1/**
   api-docs:
     enabled: true
   swagger-ui:
-    path: /swagger-ui.html
-    operationsSorter: method
+    use-root-path: true
 logging:
   level:
     root: WARN

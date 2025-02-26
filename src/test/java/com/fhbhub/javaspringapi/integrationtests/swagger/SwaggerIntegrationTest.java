@@ -9,10 +9,10 @@ import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
-public class SwaggerIntegrationTest extends AbstractIntegrationTest {
+class SwaggerIntegrationTest extends AbstractIntegrationTest {
 
     @Test
-    public void shouldDisplaySwaggerUiPage() {
+    void shouldDisplaySwaggerUIPage() {
         var content = given().basePath("/swagger-ui/index.html")
                 .port(TestConfigs.SERVER_PORT)
                 .when()

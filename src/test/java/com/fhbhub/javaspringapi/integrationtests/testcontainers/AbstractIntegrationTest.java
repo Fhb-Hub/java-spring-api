@@ -16,7 +16,7 @@ public class AbstractIntegrationTest {
 
 	static class Initializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
 
-		static MySQLContainer<?> mysql = new MySQLContainer<>("mysql:8.0.29");
+		static MySQLContainer<?> mysql = new MySQLContainer<>("mysql:9.1.0");
 
 		private static void startContainers() {
 			Startables.deepStart(Stream.of(mysql)).join();
@@ -35,8 +35,7 @@ public class AbstractIntegrationTest {
 		public void initialize(ConfigurableApplicationContext applicationContext) {
 			startContainers();
 			ConfigurableEnvironment environment = applicationContext.getEnvironment();
-			MapPropertySource testcontainers = new MapPropertySource(
-					"testcontainers",
+			MapPropertySource testcontainers = new MapPropertySource("testcontainers",
 					(Map) createConnectionConfiguration());
 			environment.getPropertySources().addFirst(testcontainers);
 		}

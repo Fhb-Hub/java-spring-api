@@ -1,4 +1,4 @@
-package com.fhbhub.javaspringapi.mocks;
+package com.fhbhub.javaspringapi.unittests.mocks;
 
 import com.fhbhub.javaspringapi.data.model.Person;
 import com.fhbhub.javaspringapi.data.dto.PersonDTO;

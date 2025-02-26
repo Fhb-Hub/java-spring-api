@@ -1,10 +1,11 @@
-package com.fhbhub.javaspringapi.service;
+package com.fhbhub.javaspringapi.unittests.service;
 
 
 import com.fhbhub.javaspringapi.data.dto.PersonDTO;
 import com.fhbhub.javaspringapi.data.model.Person;
 import com.fhbhub.javaspringapi.exception.ResourceNotFoundException;
-import com.fhbhub.javaspringapi.mocks.MockPerson;
+import com.fhbhub.javaspringapi.service.PersonService;
+import com.fhbhub.javaspringapi.unittests.mocks.MockPerson;
 import com.fhbhub.javaspringapi.repository.PersonRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

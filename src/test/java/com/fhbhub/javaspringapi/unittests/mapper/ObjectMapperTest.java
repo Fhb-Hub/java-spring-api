@@ -1,8 +1,8 @@
-package com.fhbhub.javaspringapi.mapper;
+package com.fhbhub.javaspringapi.unittests.mapper;
 
 import com.fhbhub.javaspringapi.data.dto.PersonDTO;
 import com.fhbhub.javaspringapi.data.model.Person;
-import com.fhbhub.javaspringapi.mocks.MockPerson;
+import com.fhbhub.javaspringapi.unittests.mocks.MockPerson;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

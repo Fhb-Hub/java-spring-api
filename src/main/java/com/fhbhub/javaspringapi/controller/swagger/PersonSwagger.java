@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+//@CrossOrigin(origins = "http://localhost:8080")
 @Tag(name = "People", description = "Manage people records efficiently and effortlessly.")
 public interface PersonSwagger {
 
